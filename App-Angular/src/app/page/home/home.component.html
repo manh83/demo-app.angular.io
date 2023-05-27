@@ -1,0 +1,15 @@
+<div class="container">
+    <div class="row" *ngIf="products && products.length>0; else blockData">
+        <div class="card" style="width: 18rem;" *ngFor="let product of products">
+            <img src="{{product.imgUrl}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.desc}}</p>
+              <a routerLink="/product/{{product.id}}" class="btn btn-primary">View Product</a>
+            </div>
+          </div>
+    </div>
+    <ng-template #blockData>
+        <h1>Khong co du lieu</h1>
+    </ng-template>
+</div>

@@ -1,0 +1,81 @@
+{
+  "products": [
+    {
+      "id": 2,
+      "name": "Product 2",
+      "price": 200,
+      "description": "This is product 2",
+      "imgUrl": "https://png.pngtree.com/png-vector/20210203/ourmid/pngtree-blank-tshirt-red-png-image_2882000.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Product 3",
+      "price": 300,
+      "description": "This is product 3",
+      "imgUrl": "https://thietkeaolop.vn/image/catalog/anh-bai-viet/hinh-anh-thiet-ke-ao-lop-05.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Product 4",
+      "price": 400,
+      "description": "This is product 4",
+      "imgUrl": "https://dongphuchaianh.com/wp-content/uploads/2019/08/nhung-hinh-anh-ao-lop-dep-nhat-01.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Product 5",
+      "price": 500,
+      "description": "This is product 5",
+      "imgUrl": "https://png.pngtree.com/png-vector/20210203/ourmid/pngtree-blank-tshirt-red-png-image_2882000.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Product 6",
+      "price": 600,
+      "description": "This is product 6",
+      "imgUrl": "https://dongphuchaianh.com/wp-content/uploads/2019/08/nhung-hinh-anh-ao-lop-dep-nhat-03.jpg"
+    },
+    {
+      "name": "Sản phẩm 7 update",
+      "price": "500",
+      "id": 7
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "manh123",
+      "email": "manh123@gmail.com",
+      "password": "123",
+      "confirmPassword": "123"
+    },
+    {
+      "username": "",
+      "email": "manh@gmail.com",
+      "password": "manh123",
+      "confirmPassword": "manh123",
+      "id": 2
+    },
+    {
+      "username": "manh123",
+      "email": "trapdepvietnam2000@gmail.com",
+      "password": "ok123",
+      "confirmPassword": "ok123",
+      "id": 3
+    },
+    {
+      "username": "ok11",
+      "email": "trapdepvietnam2000@gmail.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "id": 4
+    },
+    {
+      "username": "manh123",
+      "email": "man1244@gmail.com",
+      "password": "123456",
+      "confirmPassword": "123456",
+      "id": 5
+    }
+  ]
+}
