@@ -1,0 +1,75 @@
+header{
+    width: 100%;
+    height: 650px;
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-image: url('../../../assets/images/banner-bg.png');
+}
+.menu-section-top{
+    width: 100%;
+    background-color: #2b2a29;
+    clip-path: polygon(0 0, 100% 0, 96% 100%, 3% 100%);
+    height: auto;
+    padding: 10px 0px;
+}
+.custom-menu>ul>li{
+    list-style: none;
+    padding-right: 30px;
+}
+.custom-menu>ul>li>a:hover{
+    color: #f26522;
+}
+.custom-menu>ul>li>a{
+    color: #fff;
+    font-size: 17px;
+    text-decoration: none;
+}
+.nation{
+    width: 120px;
+    border-radius: 5px;
+}
+.cart>a{
+    text-decoration: none;
+}
+
+.login>a{
+    text-decoration: none;
+}
+.header-section>select{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.input-group>button{
+    background-color: #f26522;
+    color: white;
+}
+.cart{
+    margin-left: 25px;
+    margin-right: 20px;
+}
+.cart>a>i{
+    margin-right: 10px;
+}
+.login>a>i{
+    margin-right: 10px;
+}
+
+/* slideShow */
+.slide{
+    height: 400px;
+}
+.carousel-item>h1{
+    font-size: 60px;
+}
+.btn-buy-now>button{
+    width: 160px;
+    padding: 10px 0px;
+    color: #fff;
+    background-color: #2b2a29;
+    margin-top: 25px;
+}
+.btn-buy-now>button:hover{
+    background: #f26522;
+    border: #f26522;
+    color: white;
+}

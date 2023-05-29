@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row" *ngIf="products && products.length>0; eles blockData">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>STT</th>
+                <th>Product Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Công cụ</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let product of products; let i = index">
+              <tr>
+                <td>{{i+1}}</td>
+                <td>{{product.name}}</td>
+                <td>
+                    <img src="{{product.imgUrl}}" alt="" width="200px">
+                </td>
+                <td>{{product.price}}</td>
+                <td>{{product.desc}}</td>
+                <td>
+                    <button type="submit" class="btn btn-danger" (click)="removeProduct(product.id)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ng-template #blockData>
+              <h1>Không có dữ liệu</h1>
+        </ng-template>
+</div>

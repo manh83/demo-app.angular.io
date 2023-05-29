@@ -1,6 +1,9 @@
 <div class="container">
+    <div class="title text-center font-weight-bold">
+        <h1>Man & Woman Fashion</h1>
+    </div>
     <div class="row" *ngIf="products && products.length>0; else blockData">
-        <div class="card" style="width: 18rem;" *ngFor="let product of products">
+        <div class="card" style="width: 22rem;margin-right: 28px;margin-bottom: 25px;" *ngFor="let product of products">
             <img src="{{product.imgUrl}}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{product.name}}</h5>

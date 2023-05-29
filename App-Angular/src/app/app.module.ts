@@ -13,8 +13,13 @@ import { AboutComponent } from './page/about/about.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './page/login/register/register.component';
 import { SigninComponent } from './page/login/signin/signin.component';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { SearchComponent } from './component/search/search.component';
+import { ProductAddComponent } from './page/admin/product-add/product-add.component';
+import { DashboardComponent } from './page/admin/dashboard/dashboard.component';
+import { ProductListComponent } from './page/admin/product-list/product-list.component';
+import { AdminLayoutComponent } from './component/layout/admin-layout/admin-layout.component';
+import { UpdateProductComponent } from './page/admin/update-product/update-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +31,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     NotFoundComponent,
     AboutComponent,
     RegisterComponent,
-    SigninComponent
+    SigninComponent,
+    SearchComponent,
+    ProductAddComponent,
+    DashboardComponent,
+    ProductListComponent,
+    AdminLayoutComponent,
+    UpdateProductComponent
   ],
   imports: [
     BrowserModule,

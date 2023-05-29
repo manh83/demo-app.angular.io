@@ -7,7 +7,7 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-products: IProduct[] | undefined
+products: IProduct[] = []
 constructor (private productService:ProductService) {}
 
 ngOnInit(): void {
@@ -17,7 +17,6 @@ ngOnInit(): void {
     },
     (error)=>{
       console.log(error);
-     this.products = undefined      
     }
   )
 }
