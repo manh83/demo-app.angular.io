@@ -1,0 +1,48 @@
+<div class="container">
+   <div class="row">
+     <form class="form" [formGroup]="userForm" (ngSubmit)="onHandleSubmit()">
+       <p class="title">Register</p>
+       <p class="message">Signup now and get full access to our app.</p>
+ 
+       <label>
+         <input required="" placeholder="" type="text" class="input" formControlName="name">
+         <span>User Name</span>
+         <div *ngIf="formControls['name'].errors && (formControls['name'].dirty || formControls['name'].touched)">
+            <div class="text-danger fw-bold" *ngIf="formControls['name'].errors?.['required']">User name không được để trống!</div>
+            <div class="text-danger fw-bold" *ngIf="formControls['name'].errors?.['minlength']">User name tối thiểu 6 ký tự</div>
+          </div>          
+       </label>
+ 
+       <label>
+         <input required="" placeholder="" type="email" class="input" formControlName="email">
+         <span>Email</span>
+         <div *ngIf="formControls['email'].errors && (formControls['email'].dirty || formControls['email'].touched)">
+         <div class="text-danger fw-bold" *ngIf="formControls['email'].errors?.['required']">Email không được để trống!</div>
+         <div class="text-danger fw-bold" *ngIf="formControls['email'].errors?.['email']">Email không hợp lệ</div>
+       </div>
+     </label>
+ 
+     <label>
+       <input required="" placeholder="" type="password" class="input" formControlName="password">
+       <span>Password</span>
+       <div *ngIf="formControls['password'].errors && (formControls['password'].dirty || formControls['password'].touched)">
+         <div class="text-danger fw-bold" *ngIf="formControls['password'].errors['required']">Password không được để trống!</div> 
+         <div class="text-danger fw-bold" *ngIf="formControls['password'].errors?.['minlength']">Password tối thiểu 8 ký tự!</div>
+         <div class="text-danger fw-bold" *ngIf="formControls['password'].errors?.['pattern']">Password gồm 1 chữ hoa,chữ thường,số và 1 ký tự đặc biệt!</div>
+       </div>
+     </label>
+ 
+     <label>
+       <input required="" placeholder="" type="password" class="input" formControlName="confirmPassword">
+       <span>Confirm password</span>
+       <div *ngIf="formControls['confirmPassword'].errors && (formControls['confirmPassword'].dirty || formControls['confirmPassword'].touched)">
+         <div class="text-danger fw-bold" *ngIf="formControls['confirmPassword'].errors?.['required']">Confirm password không được để trống!</div>
+         <div class="text-danger fw-bold" *ngIf="formControls['confirmPassword'].value !== formControls['password'].value && !formControls['confirmPassword'].errors?.['required']">Password không khớp nhau</div>
+      </div>
+     </label>
+ 
+     <button class="submit" [disabled]="userForm.invalid">Submit</button>
+     <p class="signin">Already have an account? <a href="#">Sign in</a></p>
+   </form>
+ </div>
+ </div>

@@ -24,7 +24,8 @@ import { ProductService } from './services/product.service';
 import { CategoryListComponent } from './page/admin/category-list/category-list.component';
 import { CategoryAddComponent } from './page/admin/category-add/category-add.component';
 import { CategoryUpdateComponent } from './page/admin/category-update/category-update.component';
-import Swal from 'sweetalert2'
+import { ToastrModule } from 'ngx-toastr';
+import { SignupComponent } from './page/login/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import Swal from 'sweetalert2'
     CategoryListComponent,
     CategoryAddComponent,
     CategoryUpdateComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import Swal from 'sweetalert2'
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

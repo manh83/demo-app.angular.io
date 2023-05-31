@@ -3,6 +3,9 @@ import { ICategory, IProduct } from 'src/app/interface/interface';
 import { ProductService } from 'src/app/services/product.service';
 import { HttpClient } from '@angular/common/http';
 import { CategoryService } from 'src/app/services/category.service';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
@@ -22,7 +25,7 @@ export class ProductAddComponent {
   UPLOAD_PRESET = "uploadFile"
   CLOUD_NAME = "dajtruy2v"
 
-  constructor(private categoryService: CategoryService,private productService: ProductService,private http: HttpClient){
+  constructor(private categoryService: CategoryService,private productService: ProductService,private http: HttpClient,private router: Router){
     this.categoryService.getAllCategory().subscribe(
       (categoryData)=>{
         this.categories = categoryData
@@ -50,6 +53,10 @@ export class ProductAddComponent {
           this.productService.addProduct(this.product).subscribe(
             (respone)=>{
               this.product = respone
+              Swal.fire('Success', 'Thêm sản phẩm thành công', 'success').then(()=>{
+                this.router.navigate(['/admin/products/list'])
+              })
+              
               console.log(respone);
             },
             (error) => {

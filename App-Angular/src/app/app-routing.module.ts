@@ -15,6 +15,7 @@ import { SigninComponent } from './page/login/signin/signin.component';
 import { CategoryAddComponent } from './page/admin/category-add/category-add.component';
 import { CategoryListComponent } from './page/admin/category-list/category-list.component';
 import { CategoryUpdateComponent } from './page/admin/category-update/category-update.component';
+import { SignupComponent } from './page/login/signup/signup.component';
 
 const routes: Routes = [
   {path: "",component: WebsiteLayoutComponent,
@@ -23,7 +24,7 @@ const routes: Routes = [
     {path: "home",component: HomeComponent},
     {path: "product/:id",component: ProductDetailComponent},
     {path: "about",component: AboutComponent},
-    {path: "signup",component: RegisterComponent},
+    {path: "signup",component: SignupComponent},
     {path: "signin",component:SigninComponent}
   ]
 },
