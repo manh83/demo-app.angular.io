@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IProduct } from 'src/app/interface/interface';
+import { ICategory, IProduct } from 'src/app/interface/interface';
 import { ProductService } from 'src/app/services/product.service';
 import { HttpClient } from '@angular/common/http';
+import { CategoryService } from 'src/app/services/category.service';
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
@@ -10,15 +11,28 @@ import { HttpClient } from '@angular/common/http';
 export class ProductAddComponent {
    product: IProduct = {
     name: "",
+    description: "",
     price: 0,
-    desc: "",
-    imgUrl: ""
+    imgUrl: "",
+    categoryId: ""
   }
+  categories: ICategory[] = []
+
   selectedFile!: File;
   UPLOAD_PRESET = "uploadFile"
   CLOUD_NAME = "dajtruy2v"
 
-  constructor(private productService: ProductService,private http: HttpClient){ }
+  constructor(private categoryService: CategoryService,private productService: ProductService,private http: HttpClient){
+    this.categoryService.getAllCategory().subscribe(
+      (categoryData)=>{
+        this.categories = categoryData
+        console.log(categoryData);
+      },
+      (error)=>{
+        console.log(error);
+      }
+    )
+   }
 
   onHandleChange(event: any): void {
     this.selectedFile = event.target.files[0]
@@ -36,6 +50,7 @@ export class ProductAddComponent {
           this.productService.addProduct(this.product).subscribe(
             (respone)=>{
               this.product = respone
+              console.log(respone);
             },
             (error) => {
               console.log("Lỗi khi thêm sản phẩm: ",error);

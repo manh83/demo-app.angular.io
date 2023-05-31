@@ -4,11 +4,12 @@
     </div>
     <div class="row" *ngIf="products && products.length>0; else blockData">
         <div class="card" style="width: 22rem;margin-right: 28px;margin-bottom: 25px;" *ngFor="let product of products">
-            <img src="{{product.imgUrl}}" class="card-img-top" alt="...">
+            <img src="{{ product.imgUrl }}" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">{{product.name}}</h5>
-              <p class="card-text">{{product.desc}}</p>
-              <a routerLink="/product/{{product.id}}" class="btn btn-primary">View Product</a>
+              <h3>{{product.price}}</h3>
+              <p class="card-text">{{product.description}}</p>
+              <a routerLink="/product/{{product._id}}" class="btn btn-primary">View Product</a>
             </div>
           </div>
     </div>

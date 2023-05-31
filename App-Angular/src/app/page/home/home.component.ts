@@ -12,8 +12,9 @@ constructor (private productService:ProductService) {}
 
 ngOnInit(): void {
   this.productService.getAllProduct().subscribe(
-    (products) => {
-      this.products = products
+    (data:any) => {
+      this.products = data.docs;
+      console.log(data);
     },
     (error)=>{
       console.log(error);

@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row" *ngIf="categories && categories.length>0; else dataBlock">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Category Name</th>
+                <th scope="col">Tools</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let item of categories">
+              <tr>
+                <th scope="row">{{item._id}}</th>
+                <td>{{item.name}}</td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="removeCategory(item._id)">Delete</button>
+                    <a routerLink="/admin/categories/{{item._id}}/update">
+                        <button type="button" class="btn btn-primary">Update</button>
+                    </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>        
+    </div>
+    <ng-template #dataBlock>
+        <h1>Không có dữ liệu</h1>
+    </ng-template>
+</div>

@@ -1,24 +1,58 @@
-
-<form (ngSubmit)="onSubmit()">
-    <div class="mb-3 mt-3">
-      <label class="form-label">Product Name:</label>
-      <input type="text" class="form-control" id="name" placeholder="Enter email" name="name" [(ngModel)]="product.name" />
-    </div>
-    <div class="mb-3">
-      <label for="pwd" class="form-label">Price:</label>
-      <input type="number" class="form-control" id="price" placeholder="Enter password" name="price" [(ngModel)]="product.price" />
-    </div>
-    <div class="mb-3">
+<div class="container">
+  <div class="row">
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3 mt-3">
+        <label class="form-label">Product Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          placeholder="Enter email"
+          name="name"
+          [(ngModel)]="product.name"
+        />
+      </div>
+      <label class="form-label">Category:</label>
+      <div class="mb-3" *ngIf="categories">
+        <select class="form-select" aria-label="Default select example" name="categoryId" [(ngModel)]="product.categoryId" >
+          <option  value="{{item._id}}" *ngFor="let item of categories">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="pwd" class="form-label">Price:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          placeholder="Enter password"
+          name="price"
+          [(ngModel)]="product.price"
+        />
+      </div>
+      <div class="mb-3">
         <label for="pwd" class="form-label">Desc:</label>
-        <input type="text" class="form-control" id="desc" placeholder="Enter password" name="desc" [(ngModel)]="product.desc" />
+        <input
+          type="text"
+          class="form-control"
+          id="desc"
+          placeholder="Enter password"
+          name="desc"
+          [(ngModel)]="product.description"
+        />
       </div>
       <div class="mb-3">
         <label class="form-label">Image:</label>
-        <input type="file" class="form-control" id="imagUrl" placeholder="Enter password" name="imgUrl" (change)="onHandleChange($event)">
+        <input
+          type="file"
+          class="form-control"
+          id="imagUrl"
+          placeholder="Enter password"
+          name="imgUrl"
+          (change)="onHandleChange($event)"
+        />
       </div>
-      {{product | json}}
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-
-
+      {{ product | json }}
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>

@@ -11,21 +11,30 @@ export class UpdateProductComponent {
   product:IProduct = {
     name: "",
     price: 0,
-    desc: "",
-    imgUrl: ""
+    description: "",
+    imgUrl: "",
+    categoryId: ""
   }
   constructor (private productService:ProductService , private router:ActivatedRoute) {
-    this.router.paramMap.subscribe(param => {
-      const id = Number(param.get('id'))
-      this.productService.getOne(id).subscribe(product => {
-        this.product = product
-      })
-    })
+    this.router.paramMap.subscribe((params) => {
+      const id = params.get('id');
+      if (id) {
+        this.productService.getOne(id).subscribe((data: any) => {
+          this.product = data;
+          console.log(this.product);
+        });
+      }
+    });
   }
 
-  onHandleSubmit(){
-    this.productService.updateProduct(this.product).subscribe(product => {
+  onHandleSubmit():void{
+    this.productService.updateProduct(this.product).subscribe(
+      product => {
       console.log(product);
-    })
+    },
+    error=>{
+      console.log(error);
+    }
+    )
   }
 }

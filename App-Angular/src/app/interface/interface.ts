@@ -1,9 +1,10 @@
 export interface IProduct{
-    id?: string,
+    _id?: string,
     name: string,
     price: number,
-    desc?: string,
-    imgUrl?: string
+    description?: string,
+    imgUrl: string,
+    categoryId: string
 }
 
 export interface IUser {
@@ -12,4 +13,9 @@ export interface IUser {
     email:string,
     password: string,
     confirmPassword: string
+}
+
+export interface ICategory{
+    _id?:string,
+    name: string
 }

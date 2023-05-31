@@ -20,6 +20,12 @@ import { DashboardComponent } from './page/admin/dashboard/dashboard.component';
 import { ProductListComponent } from './page/admin/product-list/product-list.component';
 import { AdminLayoutComponent } from './component/layout/admin-layout/admin-layout.component';
 import { UpdateProductComponent } from './page/admin/update-product/update-product.component';
+import { ProductService } from './services/product.service';
+import { CategoryListComponent } from './page/admin/category-list/category-list.component';
+import { CategoryAddComponent } from './page/admin/category-add/category-add.component';
+import { CategoryUpdateComponent } from './page/admin/category-update/category-update.component';
+import Swal from 'sweetalert2'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,16 +43,19 @@ import { UpdateProductComponent } from './page/admin/update-product/update-produ
     DashboardComponent,
     ProductListComponent,
     AdminLayoutComponent,
-    UpdateProductComponent
+    UpdateProductComponent,
+    CategoryListComponent,
+    CategoryAddComponent,
+    CategoryUpdateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

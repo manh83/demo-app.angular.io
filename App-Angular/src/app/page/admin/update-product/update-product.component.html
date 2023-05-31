@@ -10,11 +10,11 @@
     </div>
     <div class="mb-3">
         <label for="pwd" class="form-label">Desc:</label>
-        <input type="text" class="form-control" id="" placeholder="Enter password" name="desc" [(ngModel)]="product.desc">
+        <input type="text" class="form-control" id="" placeholder="Enter password" name="desc" [(ngModel)]="product.description">
       </div>
       <div class="mb-3">
         <label for="pwd" class="form-label">Image:</label>
-        <input type="text" class="form-control" id="" placeholder="Enter password" name="imgUrl" [(ngModel)]="product.imgUrl">
+        <input type="file" class="form-control" id="" placeholder="Enter password" name="imgUrl" [(ngModel)]="product.imgUrl">
       </div>
       {{ product | json }}
     <button type="submit" class="btn btn-primary">Update</button>

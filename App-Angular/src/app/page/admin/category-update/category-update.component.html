@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="row">
+        <form (ngSubmit)="onHandleSubmit()">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Category Name</label>
+              <input type="text" class="form-control" id="" name="name" [(ngModel)]="category.name">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+</div>

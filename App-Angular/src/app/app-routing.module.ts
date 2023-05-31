@@ -12,6 +12,9 @@ import { ProductListComponent } from './page/admin/product-list/product-list.com
 import { AdminLayoutComponent } from './component/layout/admin-layout/admin-layout.component';
 import { DashboardComponent } from './page/admin/dashboard/dashboard.component';
 import { SigninComponent } from './page/login/signin/signin.component';
+import { CategoryAddComponent } from './page/admin/category-add/category-add.component';
+import { CategoryListComponent } from './page/admin/category-list/category-list.component';
+import { CategoryUpdateComponent } from './page/admin/category-update/category-update.component';
 
 const routes: Routes = [
   {path: "",component: WebsiteLayoutComponent,
@@ -31,6 +34,9 @@ const routes: Routes = [
     {path:"products/add",component: ProductAddComponent},
     {path:"products/:id/update",component: UpdateProductComponent},
     {path: "products/list",component:ProductListComponent},
+    {path: "categories/add",component: CategoryAddComponent},
+    {path: "categories/list",component:CategoryListComponent},
+    {path: "categories/:id/update",component: CategoryUpdateComponent}
   ]},
 {path: "**",component: NotFoundComponent}
 ];
