@@ -5,7 +5,6 @@ import { HomeComponent } from './page/home/home.component';
 import { ProductDetailComponent } from './page/product-detail/product-detail.component';
 import { NotFoundComponent } from './page/not-found/not-found.component';
 import { AboutComponent } from './page/about/about.component';
-import { RegisterComponent } from './page/login/register/register.component';
 import { ProductAddComponent } from './page/admin/product-add/product-add.component';
 import { UpdateProductComponent } from './page/admin/update-product/update-product.component';
 import { ProductListComponent } from './page/admin/product-list/product-list.component';
@@ -16,6 +15,8 @@ import { CategoryAddComponent } from './page/admin/category-add/category-add.com
 import { CategoryListComponent } from './page/admin/category-list/category-list.component';
 import { CategoryUpdateComponent } from './page/admin/category-update/category-update.component';
 import { SignupComponent } from './page/login/signup/signup.component';
+import { ForgotPasswordComponent } from './page/login/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './page/login/change-password/change-password.component';
 
 const routes: Routes = [
   {path: "",component: WebsiteLayoutComponent,
@@ -25,7 +26,9 @@ const routes: Routes = [
     {path: "product/:id",component: ProductDetailComponent},
     {path: "about",component: AboutComponent},
     {path: "signup",component: SignupComponent},
-    {path: "signin",component:SigninComponent}
+    {path: "signin",component:SigninComponent},
+    {path: "forgot-password",component:ForgotPasswordComponent},
+    {path: "changePassword",component:ChangePasswordComponent}
   ]
 },
   {path: "admin",component: AdminLayoutComponent,

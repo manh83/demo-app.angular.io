@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { AuthuService } from 'src/app/services/authu.service';
-import { IUser } from 'src/app/interface/interface';
 
 @Component({
   selector: 'app-header',
@@ -8,10 +7,19 @@ import { IUser } from 'src/app/interface/interface';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(public authService: AuthuService) {}
+  isLoggedIn: boolean = false;
 
-  getUsername(): string | null {
+  constructor(private authService: AuthuService) {
+    this.isLoggedIn = authService.isLoggedIn();
+  }
+
+  getUsername(): string {
     const currentUser = this.authService.getCurrentUser();
-    return currentUser ? currentUser.name : null;
+    return currentUser ? currentUser.name : '';
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.isLoggedIn = false;
   }
 }

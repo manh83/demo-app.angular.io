@@ -11,7 +11,6 @@ import { ProductDetailComponent } from './page/product-detail/product-detail.com
 import { NotFoundComponent } from './page/not-found/not-found.component';
 import { AboutComponent } from './page/about/about.component';
 import { HttpClientModule } from '@angular/common/http';
-import { RegisterComponent } from './page/login/register/register.component';
 import { SigninComponent } from './page/login/signin/signin.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { SearchComponent } from './component/search/search.component';
@@ -26,6 +25,8 @@ import { CategoryAddComponent } from './page/admin/category-add/category-add.com
 import { CategoryUpdateComponent } from './page/admin/category-update/category-update.component';
 import { ToastrModule } from 'ngx-toastr';
 import { SignupComponent } from './page/login/signup/signup.component';
+import { ForgotPasswordComponent } from './page/login/forgot-password/forgot-password.component';
+import { ChangePasswordComponent } from './page/login/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,6 @@ import { SignupComponent } from './page/login/signup/signup.component';
     ProductDetailComponent,
     NotFoundComponent,
     AboutComponent,
-    RegisterComponent,
     SigninComponent,
     SearchComponent,
     ProductAddComponent,
@@ -49,6 +49,8 @@ import { SignupComponent } from './page/login/signup/signup.component';
     CategoryAddComponent,
     CategoryUpdateComponent,
     SignupComponent,
+    ForgotPasswordComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,

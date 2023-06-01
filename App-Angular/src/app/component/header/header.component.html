@@ -55,11 +55,19 @@
                   </a>
                 </div>
                 <div class="login d-flex align-items-center">
-                  <a routerLink="/signin">
-                    <i style="font-size: 13px;color: white;" class="fa fa-user"></i>
-                    <span style="font-size: 14px;color: white;">{{ getUsername() || 'LOGIN' }}</span>
-                  </a>
+                  <ng-container *ngIf="isLoggedIn; else showLogin">
+                    <i style="font-size: 13px; color: white;" class="fa fa-user"></i>
+                    <span style="font-size: 14px; color: white; margin-right: 5px; margin-left: 5px;">{{ getUsername() }}</span>
+                    <i style="font-size: 13px; color: white;" class="fa fa-sign-out" (click)="logout()"></i>
+                  </ng-container>
+                  <ng-template #showLogin>
+                    <a routerLink="/signin">
+                      <i style="font-size: 13px; color: white;" class="fa fa-user"></i>
+                      <span style="font-size: 14px; color: white;">LOGIN</span>
+                    </a>
+                  </ng-template>
                 </div>
+                
                 
                 
             </div>

@@ -2,6 +2,7 @@ import User from "../models/user";
 import { signupSchema, signinSchema } from "../schemas/auth";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import nodemailer from 'nodemailer';
 
 export const signup = async (req, res) => {
   try {
@@ -59,13 +60,13 @@ export const signin = async function (req, res) {
 
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({
+      return res.status(401).json({
         message: "Tài khoản không tồn tại",
       });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({
+      return res.status(404).json({
         message: "Mật khẩu không đúng",
       });
     }
@@ -77,8 +78,125 @@ export const signin = async function (req, res) {
       user,
     });
   } catch (error) {
-     return res.status(400).json({
+     return res.status(500).json({
       message: error.message
      })
   }
 };
+
+const generateNewPassword = () => {
+  const length = 8;
+  const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  let newPassword = "";
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * charset.length);
+    newPassword += charset.charAt(randomIndex);
+  }
+
+  return newPassword;
+};
+
+
+// kiểm tra email và lấy lại mật khẩu
+const sendResetPasswordEmail = async (email, resetToken) => {
+  try {
+    // Cấu hình Nodemailer để gửi email
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'your-email@example.com',
+        pass: 'your-email-password',
+      },
+    });
+
+    // Tạo nội dung email
+    const mailOptions = {
+      from: 'your-email@example.com',
+      to: email,
+      subject: 'Reset Password',
+      html: `<p>Click the following link to reset your password: <a href="your-website.com/reset-password?token=${resetToken}">Reset Password</a></p>`,
+    };
+
+    // Gửi email
+    await transporter.sendMail(mailOptions);
+    console.log('Email sent successfully');
+  } catch (error) {
+    console.log('Error sending email:', error);
+  }
+};
+
+export const forgotPassword = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    // Check if the email exists in the database
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        message: 'Email không tồn tại!',
+      });
+    }
+
+    // Generate a new password
+    const newPassword = generateNewPassword();
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    // Update the user's password in the database
+    user.password = hashedPassword;
+    await user.save();
+
+    // Send the new password to the user's email
+    sendResetPasswordEmail(email, newPassword);
+
+    return res.status(200).json({
+      message: 'Lấy lại mật khẩu thành công',
+      newPassword
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: 'An error occurred',
+      error: error.message,
+    });
+  }
+};
+
+
+// ĐỔI MẬT KHẨU
+export const changePassword = async (req, res) => {
+  try {
+    const { email, password, newPassword } = req.body;
+
+    // Xác thực người dùng
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        message: 'Email không tồn tại!',
+      });
+    }
+
+    // Kiểm tra xác thực mật khẩu hiện tại
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        message: 'Mật khẩu hiện tại không chính xác',
+      });
+    }
+
+    // Tạo mật khẩu mới và cập nhật trong cơ sở dữ liệu
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    user.password = hashedPassword;
+    await user.save();
+
+    return res.status(200).json({
+      message: 'Đổi mật khẩu thành công'
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message
+    });
+  }
+};
+
+
+
+
