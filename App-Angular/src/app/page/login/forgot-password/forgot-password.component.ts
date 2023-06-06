@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators,FormBuilder } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -9,30 +9,21 @@ import Swal from 'sweetalert2';
   styleUrls: ['./forgot-password.component.css']
 })
 export class ForgotPasswordComponent {
-  forgotPasswordForm: FormGroup;
-
-  constructor(private http: HttpClient) {
-    this.forgotPasswordForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email])
+  userForm!: FormGroup;
+  constructor(private http: HttpClient,private formBuilder:FormBuilder) {
+    this.userForm = this.formBuilder.group({
+      email:  ['', [Validators.required, Validators.email]]
     });
   }
-
-  onSubmit(): void {
-    if (this.forgotPasswordForm.invalid) {
-      return;
-    }
-
-    const emailControl = this.forgotPasswordForm.get('email');
-    if (emailControl && emailControl.value) {
-      const email = emailControl.value;
-      this.sendResetPasswordRequest(email);
-    }
+  get formControls(){
+    return this.userForm.controls
   }
-
-  sendResetPasswordRequest(email: string): void {
-    const requestBody = { email };
+  onSubmit(): void {
+    const checkEmail = {
+      email: this.formControls['email'].value.trim(),
+    }
   
-    this.http.post<any>('http://localhost:8080/api/forgot-password', requestBody).subscribe(
+    this.http.post<any>('http://localhost:8080/api/forgot-password', checkEmail).subscribe(
       (response) => {
           // Mật khẩu đã được gửi về thành công
           const newPassword = response.newPassword;

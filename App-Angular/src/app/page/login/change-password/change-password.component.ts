@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { AuthuService } from 'src/app/services/authu.service';
 import Swal from 'sweetalert2';
 
@@ -9,20 +9,24 @@ import Swal from 'sweetalert2';
   styleUrls: ['./change-password.component.css']
 })
 export class ChangePasswordComponent {
-  public email!: string;
-  public password!: string;
-  public newPassword!: string;
-  @ViewChild('changePasswordForm') changePasswordForm!: NgForm;
-
-  constructor(private authService: AuthuService) { }
-
-  changePassword() {
-    if (this.changePasswordForm.valid) {
-      const passwordData = {
-        email: this.email,
-        password: this.password,
-        newPassword: this.newPassword
-      };
+  userForm!:FormGroup
+  constructor(private authService: AuthuService, private formBuilder: FormBuilder) { 
+    this.userForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)]],
+      newPassword: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)]]
+    });
+  }
+  
+  get formControls(){
+    return this.userForm.controls
+  }
+  onHandleChangePassword() {
+    const passwordData = {
+      email: this.userForm.get('email')?.value.trim(),
+      password: this.userForm.get('password')?.value.trim(),
+      newPassword: this.userForm.get('newPassword')?.value.trim()
+    };
 
       this.authService.changePassword(passwordData).subscribe(
         (response) => {
@@ -36,4 +40,4 @@ export class ChangePasswordComponent {
       );
     }
   }
-}
+

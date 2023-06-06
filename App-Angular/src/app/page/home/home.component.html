@@ -16,4 +16,21 @@
     <ng-template #blockData>
         <h1>Khong co du lieu</h1>
     </ng-template>
+  
+    <div class="d-flex justify-content-end" style="margin-top: 50px;margin-bottom: 50px;margin-right: 20px;">
+      <!-- nút chuyển trang -->
+      <div>
+        <th type="submit" class="border border-dark" *ngIf="currentPage > 1" (click)="onPreviousPage()">trước</th>
+        <th type="button" class="border border-dark" *ngIf="currentPage < totalPages" (click)="onNextPage()">Sau</th>
+      </div>
+
+        <!-- Pagination component -->
+      <app-pagination 
+        [currentPage]="currentPage" 
+        [totalPages]="totalPages" 
+        (pageChanged)="onPageChanged($event)">
+      </app-pagination>
+
+    </div>
+
 </div>

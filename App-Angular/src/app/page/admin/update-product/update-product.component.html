@@ -1,21 +1,25 @@
 
-<form (ngSubmit)="onHandleSubmit()">
-    <div class="mb-3 mt-3">
-      <label for="email" class="form-label">Product Name:</label>
-      <input type="text" class="form-control" id="" placeholder="Enter email" name="name" [(ngModel)]="product.name">
+<div class="container">
+    <div class="row">
+      <form (ngSubmit)="onHandleSubmit()">
+        <div class="mb-3 mt-3">
+          <label for="email" class="form-label">Product Name:</label>
+          <input type="text" class="form-control" id="" placeholder="Enter email" name="name" [(ngModel)]="product.name">
+        </div>
+        <div class="mb-3">
+          <label for="pwd" class="form-label">Price:</label>
+          <input type="number" class="form-control" id="" placeholder="Enter password" name="price" [(ngModel)]="product.price">
+        </div>
+        <div class="mb-3">
+            <label for="pwd" class="form-label">Desc:</label>
+            <input type="text" class="form-control" id="" placeholder="Enter password" name="desc" [(ngModel)]="product.description">
+          </div>
+          <div class="mb-3">
+            <label for="pwd" class="form-label">Image:</label>
+            <input type="file" class="form-control" id="" placeholder="Enter password" name="imgUrl" [(ngModel)]="product.imgUrl">
+          </div>
+          {{ product | json }}
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
     </div>
-    <div class="mb-3">
-      <label for="pwd" class="form-label">Price:</label>
-      <input type="number" class="form-control" id="" placeholder="Enter password" name="price" [(ngModel)]="product.price">
-    </div>
-    <div class="mb-3">
-        <label for="pwd" class="form-label">Desc:</label>
-        <input type="text" class="form-control" id="" placeholder="Enter password" name="desc" [(ngModel)]="product.description">
-      </div>
-      <div class="mb-3">
-        <label for="pwd" class="form-label">Image:</label>
-        <input type="file" class="form-control" id="" placeholder="Enter password" name="imgUrl" [(ngModel)]="product.imgUrl">
-      </div>
-      {{ product | json }}
-    <button type="submit" class="btn btn-primary">Update</button>
-</form>
+</div>

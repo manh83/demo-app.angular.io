@@ -3,27 +3,34 @@ import { HttpClient } from '@angular/common/http';
 import { AuthuService } from 'src/app/services/authu.service';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import {FormGroup,FormBuilder,Validators} from "@angular/forms"
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-  email: string = '';
-  password: string = '';
 
-  constructor(private http: HttpClient, private authService: AuthuService,private router:Router) {}
+  userForm!:FormGroup
+  constructor(private http: HttpClient, private authService: AuthuService,private router:Router,private formBuilder:FormBuilder) {
+    this.userForm =this.formBuilder.group({
+      email:["",[Validators.required,Validators.email]],
+      password: ["",[Validators.required,Validators.minLength(8),Validators.pattern(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/)]]
+    })
+  }
+  get formControls(){
+    return this.userForm.controls
+  }
 
   onLogin(): void {
     const userData = {
-      email: this.email,
-      password: this.password
+      email: this.formControls['email'].value.trim(),
+      password: this.formControls['password'].value.trim()
     };
   
     this.http.post<any>('http://localhost:8080/api/signin', userData).subscribe(
       (response) => {
         // Xác thực thành công, điều hướng đến trang chính
-        // const token = response.accessToken
         if(response.user.role==="admin"){
           // Lưu thông tin người dùng đã đăng nhập vào AuthService
           this.authService.setCurrentUser(response.user,response.accessToken);

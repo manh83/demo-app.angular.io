@@ -4,7 +4,7 @@ export const checkPermission = async (req, res, next) => {
   try {
     // kiểm tra xem user có đăng nhập không
     if (!req.headers.authorization) {
-      throw new Error("Bạn phải đăng nhập để thực hiện hành động này");
+      throw new Error("Bạn phải đăng nhập quyền admin để thực hiện hành động này");
     }
 
     // lấy jwt token từ header
@@ -26,7 +26,7 @@ export const checkPermission = async (req, res, next) => {
       const user = await User.findById(payload._id);
       // kiểm tra xem user có đủ quyền để thực hiện hành động đó không
       if (user.role != "admin") {
-        return res.json({
+        return res.status(401).json({
           message: "Bạn không có quyền để thực hiện hành động này",
         });
       }

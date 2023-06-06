@@ -1,0 +1,12 @@
+<div class="pagination">
+  <th type="submit" *ngFor="let page of pages.slice(0, 1)" [class.active]="currentPage === page" (click)="onPageChange(page)">
+    {{ page }}
+  </th>
+
+  <ng-container *ngIf="currentPage + 1 <= totalPages">
+    <th disabled>...</th>
+    <th  (click)="onPageChange(currentPage + 1)">
+      {{ currentPage + 1 }}
+    </th>
+  </ng-container>
+</div>

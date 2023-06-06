@@ -37,11 +37,13 @@
        <span>Confirm password</span>
        <div *ngIf="formControls['confirmPassword'].errors && (formControls['confirmPassword'].dirty || formControls['confirmPassword'].touched)">
          <div class="text-danger fw-bold" *ngIf="formControls['confirmPassword'].errors?.['required']">Confirm password không được để trống!</div>
-         <div class="text-danger fw-bold" *ngIf="formControls['confirmPassword'].value !== formControls['password'].value && !formControls['confirmPassword'].errors?.['required']">Password không khớp nhau</div>
+         <div *ngIf="formControls['confirmPassword'].value != formControls['password'].value">
+          Password không khớp nhau
+      </div>
       </div>
      </label>
  
-     <button class="submit" [disabled]="userForm.invalid">Submit</button>
+     <button class="submit">Submit</button>
      <p class="signin">Already have an account? <a href="#">Sign in</a></p>
    </form>
  </div>

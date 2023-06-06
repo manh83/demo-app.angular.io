@@ -1,45 +1,76 @@
 <div class="container">
   <div class="row">
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
       <div class="mb-3 mt-3">
         <label class="form-label">Product Name:</label>
         <input
           type="text"
           class="form-control"
           id="name"
-          placeholder="Enter email"
+          placeholder="Enter product"
           name="name"
-          [(ngModel)]="product.name"
+         formControlName="name"
         />
+        <div *ngIf="formControls['name'].errors && (formControls['name'].dirty || formControls['name'].touched)">
+          <div class="text-danger fw-bold mt-2" *ngIf="formControls['name'].errors?.['required']">
+            Product name không để trống
+          </div>
+          <div class="text-danger fw-bold mt-2" *ngIf="formControls['name'].errors?.['minlength']">
+            Product name tối thiểu 6 ký tự
+          </div>
+          <div class="text-danger fw-bold mt-2" *ngIf="formControls['name'].errors?.['maxLength']">
+            Product name tối đa 255 ký tự
+          </div>
+        </div>
       </div>
+
       <label class="form-label">Category:</label>
       <div class="mb-3" *ngIf="categories">
-        <select class="form-select" aria-label="Default select example" name="categoryId" [(ngModel)]="product.categoryId" >
+        <select class="form-select" aria-label="Default select example" name="categoryId" formControlName="categoryId">
           <option  value="{{item._id}}" *ngFor="let item of categories">{{item.name}}</option>
         </select>
+        <div *ngIf="formControls['categoryId'].errors && (formControls['categoryId'].dirty || formControls['categoryId'].touched)">
+          <div class="text-danger fw-bold mt-2" *ngIf="formControls['categoryId'].errors?.['required']">
+            Category không được để trống
+          </div>
+        </div>
       </div>
+
       <div class="mb-3">
         <label for="pwd" class="form-label">Price:</label>
         <input
-          type="number"
+          type="text"
           class="form-control"
           id="price"
-          placeholder="Enter password"
+          placeholder="Enter price"
           name="price"
-          [(ngModel)]="product.price"
+          formControlName="price"
         />
+        <div *ngIf="formControls['price'].errors && (formControls['price'].dirty || formControls['price'].touched)">
+          <div class="text-danger fw-bold mt-2" *ngIf="formControls['price'].errors?.['required']">
+            Price không được để trống
+          </div>
+          <div class="text-danger fw-bold mt-2" *ngIf="formControls['price'].errors?.['min']">
+            Price phải lớn hơn 0
+          </div>
+          <div class="text-danger fw-bold mt-2" *ngIf="formControls['price'].errors?.['pattern']">
+            Price phải là số
+          </div>
+        </div>
       </div>
+
       <div class="mb-3">
         <label for="pwd" class="form-label">Desc:</label>
         <input
           type="text"
           class="form-control"
           id="desc"
-          placeholder="Enter password"
+          placeholder="Enter description"
           name="desc"
-          [(ngModel)]="product.description"
+         formControlName="description"
         />
       </div>
+
       <div class="mb-3">
         <label class="form-label">Image:</label>
         <input
@@ -48,10 +79,13 @@
           id="imagUrl"
           placeholder="Enter password"
           name="imgUrl"
+         formControlName="imgUrl"
           (change)="onHandleChange($event)"
         />
       </div>
-      {{ product | json }}
+      <div class="mt-3 mb-3">
+        <img [src]="imgUrl" *ngIf="imgUrl" width="300px"/>
+      </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>

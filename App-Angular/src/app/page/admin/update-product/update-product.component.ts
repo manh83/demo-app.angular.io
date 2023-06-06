@@ -29,7 +29,8 @@ export class UpdateProductComponent {
       }
     });
   }
-
+  
+  
   onHandleSubmit():void{
     this.productService.updateProduct(this.product).subscribe(
       product => {

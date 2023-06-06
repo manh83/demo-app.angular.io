@@ -8,7 +8,7 @@ import instance from '../instance/instance';
 })
 export class AuthuService {
   private currentUserSubject: BehaviorSubject<IUser | null> = new BehaviorSubject<IUser | null>(null);
-  public currentUser$ = this.currentUserSubject.asObservable();
+  // public currentUser$ = this.currentUserSubject.asObservable();
   private localStorageKey = 'currentUser';
   private tokenKey = 'token';
 
@@ -22,7 +22,7 @@ export class AuthuService {
   public setCurrentUser(user: IUser, token: string): void {
     this.currentUserSubject.next(user);
     localStorage.setItem(this.localStorageKey, JSON.stringify(user));
-    localStorage.setItem(this.tokenKey, token);
+    localStorage.setItem(this.tokenKey, `"${token}"`);
   }
 
   public getCurrentUser(): IUser | null {
