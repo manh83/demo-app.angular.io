@@ -13,13 +13,16 @@ import { Router } from '@angular/router';
 export class ProductListComponent {
   products: IProduct[] = [];
   categories: ICategory[] = [];
-
+  currentPage = 1; // Current page number
+  limit = 10; // Number of products to fetch per page
+  search: string = '';
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router
   ) {
- 
+    this.fetchCategories();
+    this.fetchProducts();
   }
 
   fetchCategories(): void {
@@ -33,6 +36,36 @@ export class ProductListComponent {
     );
   }
 
+  fetchProducts(): void {
+    this.productService.getAllProduct(this.currentPage, this.limit).subscribe(
+      (data: any) => {
+        this.products = data.docs;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  nextPage(): void {
+    this.currentPage++;
+    this.fetchProducts();
+  }
+  pre():void{
+    if (this.currentPage > 1) {
+      this.currentPage--; // Giảm chỉ số trang khi nhấn nút "Previous", nhưng đảm bảo chỉ số trang không âm
+    }
+    this.fetchProducts();
+  }
+
+  get filteredProducts() {
+    const searchLower = this.search ? this.search.toLowerCase() : '';
+    return this.products.filter(product =>
+      product.name.toLowerCase().includes(searchLower)
+    );
+  }
+  
+  
 
   getCategoryName(categoryId: any): string {
     const category = this.categories.find(c => c._id === categoryId);

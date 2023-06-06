@@ -5,7 +5,7 @@
 
   <ng-container *ngIf="currentPage + 1 <= totalPages">
     <th disabled>...</th>
-    <th  (click)="onPageChange(currentPage + 1)">
+    <th (click)="onPageChange(currentPage + 1)">
       {{ currentPage + 1 }}
     </th>
   </ng-container>

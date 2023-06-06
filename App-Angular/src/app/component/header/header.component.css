@@ -25,9 +25,15 @@ header{
     text-decoration: none;
 }
 .nation{
+    height: 40px;
     width: 120px;
     border-radius: 5px;
 }
+.nation>div{
+    margin-top: 10px;
+    margin-left: 16px;
+}
+
 .cart>a{
     text-decoration: none;
 }
@@ -42,6 +48,11 @@ header{
 .input-group>button{
     background-color: #f26522;
     color: white;
+    height: 40px;
+}
+.input-group>input{
+    height: 40px;
+
 }
 .cart{
     margin-left: 25px;
@@ -73,6 +84,59 @@ header{
     border: #f26522;
     color: white;
 }
+
+/* // menu đứng */
+.sidenav {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: black;
+    z-index: 1000;
+    transform: translateX(-250px);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .sidenav.open {
+    transform: translateX(0);
+  }
+.close-icon{
+    font-size: 25px;
+    cursor: pointer;
+    margin-right: 30px;
+    margin-top: 27px;
+    color: white;
+}
+.close-icon>i:hover{
+    color: #f26522;
+}
+.menu-content{
+    margin-top: 20px;
+    margin-left: 10px;
+}
+.menu-content>a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+}
+
+.menu-content>a:hover {
+    color: #f26522;
+}
+.form-select{
+    height: 40px;
+}
+#nav>p>img{
+    height: 35px;
+}
+#nav{
+    margin-top: 2px;
+}
+
 
 
 

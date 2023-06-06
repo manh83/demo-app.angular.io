@@ -1,17 +1,23 @@
 <div class="container">
-    <div class="title text-center font-weight-bold">
-        <h1>Man & Woman Fashion</h1>
+    <div>
+        <h1 class="fashion_taital">Man & Woman Fashion</h1>
     </div>
-    <div class="row" *ngIf="products && products.length>0; else blockData">
-        <div class="card" style="width: 22rem;margin-right: 28px;margin-bottom: 25px;" *ngFor="let product of products">
-            <img src="{{ product.imgUrl }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{product.name}}</h5>
-              <h3>{{product.price}}</h3>
-              <p class="card-text">{{product.description}}</p>
-              <a routerLink="/product/{{product._id}}" class="btn btn-primary">View Product</a>
-            </div>
+    <div class="row fashion-box" *ngIf="filteredProducts && filteredProducts.length > 0; else blockData">
+      <div class="col-4-3" >
+        <div class="box_main" *ngFor="let product of filteredProducts">
+          <h4 class="shirt_text">{{product.name}}</h4>
+          <p class="price_text">
+            Price <span style="color: #262626">{{product.price}}</span>
+          </p>
+          <div class="tshirt_img">
+            <img src="{{product.imgUrl}}" width="90%"/>
           </div>
+          <div class="btn_main">
+            <div class="buy_bt"><a href="#">Buy Now</a></div>
+            <div class="seemore_bt"><a href="#">See More</a></div>
+          </div>
+        </div>
+      </div>
     </div>
     <ng-template #blockData>
         <h1>Khong co du lieu</h1>

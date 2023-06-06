@@ -23,6 +23,7 @@ const routes: Routes = [
   children: [
     {path: "",redirectTo: "home",pathMatch: 'full'},
     {path: "home",component: HomeComponent},
+    {path:"about",component:AboutComponent},
     {path: "product/:id",component: ProductDetailComponent},
     {path: "about",component: AboutComponent},
     {path: "signup",component: SignupComponent},
