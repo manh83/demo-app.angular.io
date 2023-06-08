@@ -18,6 +18,7 @@ import { SignupComponent } from './page/login/signup/signup.component';
 import { ForgotPasswordComponent } from './page/login/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './page/login/change-password/change-password.component';
 import { CartComponent } from './page/cart/cart.component';
+import { PayComponent } from './page/pay/pay.component';
 
 const routes: Routes = [
   {path: "",component: WebsiteLayoutComponent,
@@ -31,7 +32,8 @@ const routes: Routes = [
     {path: "signin",component:SigninComponent},
     {path: "forgot-password",component:ForgotPasswordComponent},
     {path: "changePassword",component:ChangePasswordComponent},
-    {path: "cart",component: CartComponent}
+    {path: "cart",component: CartComponent},
+    {path: "pay",component: PayComponent}
   ]
 },
   {path: "admin",component: AdminLayoutComponent,

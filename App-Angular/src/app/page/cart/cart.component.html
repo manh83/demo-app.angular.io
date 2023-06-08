@@ -1,41 +1,53 @@
-
-  <div class="container">
-    <div class="row">
-        <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"><input type="checkbox" name="" id=""></th>
-                <th scope="col">Hình Ảnh</th>
-                <th scope="col">Tên Sản Phẩm</th>
-                <th scope="col">Đơn Giá</th>
-                <th scope="col">Số Lượng</th>
-                <th scope="col">Số Tiền</th>
-                <th scope="col">Thao tác</th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let product of cartProducts">
-              <tr>
-                <th><input type="checkbox" name="" id=""></th>
-                <td>
-                    <img src="{{product.imgUrl}}" alt="" width="200px">
-                </td>
-                <td>{{product.name}}</td>
-                <td>{{product.price}}</td>
-                <td>
-                    <div class="buttons_added">
-                        <input class="minus is-form" type="button" value="-">
-                        <input aria-label="quantity" class="input-qty" max="10" min="1" name="" type="number" value="1">
-                        <input class="plus is-form" type="button" value="+">
-                      </div>
-                </td>
-                <td></td>
-                <td>
-                    <button type="button" class="btn btn-danger" (click)="removeCart(product._id)">Xóa</button>
-                </td>
-              </tr>
-              <tr>
-            </tbody>
-          </table>
+<div class="container">
+  <div class="row" *ngIf="cartProducts; else dataBlock">
+    <div>
+      <button type="button" class="btn btn-danger" (click)="removeSelectedProducts()">Xóa tất cả</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">
+            <input type="checkbox" name="" id="" [(ngModel)]="selectAll" (change)="selectAllProducts()">
+          </th>                    
+          <th scope="col">Hình Ảnh</th>
+          <th scope="col">Tên Sản Phẩm</th>
+          <th scope="col">Đơn Giá</th>
+          <th scope="col">Số Lượng</th>
+          <th scope="col">Số Tiền</th>
+          <th scope="col">Thao tác</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let cartItem of cartProducts">
+        <tr>
+          <input type="checkbox" name="" id="" [checked]="cartItem.selected" (change)="selectProduct(cartItem, $event)">
+          <td>
+            <img src="{{cartItem.product.imgUrl}}" alt="" width="200px">
+          </td>
+          <td>{{cartItem.product.name}}</td>
+          <td>{{cartItem.product.price}}</td>
+          <td>
+            <div class="buttons_added">
+              <input class="minus is-form" type="button" value="-" (click)="minus(cartItem)">
+              <input aria-label="quantity" class="input-qty" max="10" min="1" name="" type="number" [value]="cartItem.quantity" [(ngModel)]="cartItem.quantity" (change)="calculateTotal()">
+              <input class="plus is-form" type="button" value="+" (click)="plus(cartItem)">
+            </div>
+          </td>
+          <td>{{cartItem.total}}</td>
+          <td>
+            <button type="button" class="btn btn-danger" (click)="removeCart(cartItem.product._id)">Xóa</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="d-flex justify-content-end">
+      Tổng Tiền: {{ calculateTotal() }}
+    </div>
+    <div class="d-flex justify-content-end">
+      
+        <button type="button" class="btn btn-primary" (click)="goToPayment()">Thanh toán</button>
     </div>
   </div>
-  
+  <ng-template #dataBlock>
+    <h1>Bạn hãy thực hiện đăng nhập lại tài khoản để có thể xem giỏ hàng của mình</h1>
+  </ng-template>
+</div>

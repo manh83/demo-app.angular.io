@@ -62,17 +62,22 @@
                       </select>
                     </div>
                 </div>
+
                 <div class="cart d-flex mt-2">
-                  <a href="">
-                    <i style="font-size: 13px;color: white;" class="fa-solid fa-cart-shopping"></i>
-                     <span style="font-size: 13px;color: white;">CART</span>
+                  <a routerLink="/cart">
+                    <i style="font-size: 13px; color: white; position: relative;" class="fa-solid fa-cart-shopping">
+                      <span class="cart-count">
+                        {{ cartProducts.length > 0 ? cartProducts.length : '0' }}
+                      </span>
+                    </i>
+                    <span style="font-size: 13px; color: white;">CART</span>
                   </a>
                 </div>
                 <div class="login d-flex mt-2">
                   <ng-container *ngIf="isLoggedIn; else showLogin">
-                    <i style="font-size: 13px; color: white;" class="fa fa-user"></i>
-                    <span style="font-size: 14px; color: white; margin-right: 5px; margin-left: 5px;">{{ getUsername() }}</span>
-                    <i style="font-size: 13px; color: white;" class="fa fa-sign-out" (click)="logout()"></i>
+                    <i style="font-size: 13px; color: white; margin-top: 5px;margin-left: 5px;" class="fa fa-user"></i>
+                    <span style="font-size: 14px; color: white; margin-right: 5px; margin-left: 5px;margin-top: 2px;">Hi,{{ getUsername() }}</span>
+                    <i style="font-size: 13px; color: white;margin-top: 5px" class="fa fa-sign-out" (click)="logout()"></i>
                   </ng-container>
                   <ng-template #showLogin>
                     <a routerLink="/signin">

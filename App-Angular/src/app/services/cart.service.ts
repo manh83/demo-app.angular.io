@@ -29,4 +29,12 @@ export class CartService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.delete<any>(`${instance.defaults.baseURL}/api/cart/remove/`+id,{headers})
   }
+  
+  deleteAllCart(): Observable<any> {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    const url = `${instance.defaults.baseURL}/api/cart/removeAll`; // Replace with your API endpoint
+    return this.http.delete<any>(url, { headers });
+  }
+  
 }

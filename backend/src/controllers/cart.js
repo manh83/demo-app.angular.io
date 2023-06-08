@@ -144,6 +144,44 @@ export const removeProductCart = async (req, res) => {
 };
 
 
+export const removeAllCart = async (req, res) => {
+  try {
+    // Lấy cart của người dùng từ token
+    const token = req.headers.authorization.split(" ")[1];
+    const decodedToken = jwt.verify(token, "manhcx");
+    const userId = decodedToken._id;
+
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.status(404).json({ message: "Người dùng không tồn tại" });
+    }
+
+    let cart = null;
+    if (user.carts.length > 0) {
+      cart = await Cart.findById(user.carts[0]);
+    }
+
+    if (!cart) {
+      return res.status(404).json({ message: "Không tìm thấy giỏ hàng" });
+    }
+
+    // Xóa tất cả sản phẩm trong giỏ hàng
+    cart.products = [];
+    await cart.save();
+
+    return res.json({
+      message: "Đã xóa tất cả sản phẩm trong giỏ hàng",
+      cart: cart.products,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
+
+
 
 
 
