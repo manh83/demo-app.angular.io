@@ -13,7 +13,10 @@
             <img src="{{product.imgUrl}}" width="90%"/>
           </div>
           <div class="btn_main">
-            <div class="buy_bt"><a href="#">Buy Now</a></div>
+            <div class="buy_bt">
+              <p (click)="addProductToCart(product._id)">Buy Now</p>
+            </div>
+                                
             <div class="seemore_bt"><a href="#">See More</a></div>
           </div>
         </div>

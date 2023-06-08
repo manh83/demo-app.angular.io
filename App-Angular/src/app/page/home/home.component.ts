@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IProduct } from 'src/app/interface/interface';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
-
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,7 +16,25 @@ export class HomeComponent implements OnInit {
   searchKeyword: string = '';
   filteredProducts: IProduct[] = [];
 
-  constructor(private productService: ProductService,private route: ActivatedRoute) {}
+  constructor(private productService: ProductService,private route: ActivatedRoute,private cartService:CartService) {}
+
+  addProductToCart(productId: any) {
+    // Kiểm tra nếu productId không phải là undefined
+    if (productId) {
+      // Tiếp tục xử lý
+      this.cartService.addToCart(productId).subscribe(
+        (response) => {
+          console.log(response);
+          // Xử lý thành công, ví dụ hiển thị thông báo, cập nhật lại danh sách giỏ hàng, vv.
+        },
+        (error) => {
+          console.log(error);
+          // Xử lý lỗi, ví dụ hiển thị thông báo lỗi.
+        }
+      );
+    }
+  }
+  
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -37,6 +55,8 @@ export class HomeComponent implements OnInit {
   fetchProducts(): void {
     this.productService.getAllProduct(this.currentPage, this.itemsPerPage).subscribe(
       (data: any) => {
+        console.log(data);
+        
         this.products = data.docs;
         this.totalPages = data.totalPages;
         this.searchProducts();

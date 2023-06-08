@@ -28,6 +28,7 @@ import { SignupComponent } from './page/login/signup/signup.component';
 import { ForgotPasswordComponent } from './page/login/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './page/login/change-password/change-password.component';
 import { PaginationComponent } from './component/pagination/pagination.component';
+import { CartComponent } from './page/cart/cart.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { PaginationComponent } from './component/pagination/pagination.component
     ForgotPasswordComponent,
     ChangePasswordComponent,
     PaginationComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { signupSchema, signinSchema } from "../schemas/auth";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import nodemailer from 'nodemailer';
+import Cart from '../models/cart'
 
 export const signup = async (req, res) => {
   try {
@@ -70,6 +71,14 @@ export const signin = async function (req, res) {
         message: "Mật khẩu không đúng",
       });
     }
+
+    // Kiểm tra nếu người dùng chưa có giỏ hàng
+    if (!user.cart) {
+      const cart = await Cart.create({ products: [] });
+      user.cart = cart._id;
+      await user.save();
+    }
+
     const token = jwt.sign({ _id: user._id }, "manhcx", { expiresIn: "1h" });
     user.password = undefined;
     return res.status(200).json({

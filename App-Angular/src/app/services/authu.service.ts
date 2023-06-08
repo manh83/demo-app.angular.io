@@ -22,7 +22,7 @@ export class AuthuService {
   public setCurrentUser(user: IUser, token: string): void {
     this.currentUserSubject.next(user);
     localStorage.setItem(this.localStorageKey, JSON.stringify(user));
-    localStorage.setItem(this.tokenKey, `"${token}"`);
+    localStorage.setItem(this.tokenKey, token);
   }
 
   public getCurrentUser(): IUser | null {
@@ -45,5 +45,8 @@ export class AuthuService {
 
   changePassword(passwordData: any) {
     return this.http.post<any>(`${instance.defaults.baseURL}/api/changePassword`, passwordData);
+  }
+  public getToken(): string {
+    return localStorage.getItem(this.tokenKey) || '';
   }
 }

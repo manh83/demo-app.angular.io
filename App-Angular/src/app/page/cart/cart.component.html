@@ -1,0 +1,41 @@
+
+  <div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col"><input type="checkbox" name="" id=""></th>
+                <th scope="col">Hình Ảnh</th>
+                <th scope="col">Tên Sản Phẩm</th>
+                <th scope="col">Đơn Giá</th>
+                <th scope="col">Số Lượng</th>
+                <th scope="col">Số Tiền</th>
+                <th scope="col">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let product of cartProducts">
+              <tr>
+                <th><input type="checkbox" name="" id=""></th>
+                <td>
+                    <img src="{{product.imgUrl}}" alt="" width="200px">
+                </td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td>
+                    <div class="buttons_added">
+                        <input class="minus is-form" type="button" value="-">
+                        <input aria-label="quantity" class="input-qty" max="10" min="1" name="" type="number" value="1">
+                        <input class="plus is-form" type="button" value="+">
+                      </div>
+                </td>
+                <td></td>
+                <td>
+                    <button type="button" class="btn btn-danger" (click)="removeCart(product._id)">Xóa</button>
+                </td>
+              </tr>
+              <tr>
+            </tbody>
+          </table>
+    </div>
+  </div>
+  

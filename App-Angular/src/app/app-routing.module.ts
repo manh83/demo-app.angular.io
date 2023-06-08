@@ -17,6 +17,7 @@ import { CategoryUpdateComponent } from './page/admin/category-update/category-u
 import { SignupComponent } from './page/login/signup/signup.component';
 import { ForgotPasswordComponent } from './page/login/forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './page/login/change-password/change-password.component';
+import { CartComponent } from './page/cart/cart.component';
 
 const routes: Routes = [
   {path: "",component: WebsiteLayoutComponent,
@@ -29,7 +30,8 @@ const routes: Routes = [
     {path: "signup",component: SignupComponent},
     {path: "signin",component:SigninComponent},
     {path: "forgot-password",component:ForgotPasswordComponent},
-    {path: "changePassword",component:ChangePasswordComponent}
+    {path: "changePassword",component:ChangePasswordComponent},
+    {path: "cart",component: CartComponent}
   ]
 },
   {path: "admin",component: AdminLayoutComponent,
