@@ -72,17 +72,14 @@ export class HomeComponent implements OnInit {
     this.fetchProducts();
   }
 
-  onNextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-      this.fetchProducts();
-    }
+  nextPage(): void {
+    this.currentPage++;
+    this.fetchProducts();
   }
-
-  onPreviousPage(): void {
+  pre():void{
     if (this.currentPage > 1) {
-      this.currentPage--;
-      this.fetchProducts();
+      this.currentPage--; // Giảm chỉ số trang khi nhấn nút "Previous", nhưng đảm bảo chỉ số trang không âm
     }
+    this.fetchProducts();
   }
 }

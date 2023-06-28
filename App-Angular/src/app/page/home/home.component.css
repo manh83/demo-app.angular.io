@@ -67,21 +67,20 @@ th{
 }
 
 .buy_bt {
-    float: left;
     width: 100%;
 }
 
-.buy_bt>a {
+.buy_bt>h2 {
     text-decoration: none;
     width: 100%;
     font-size: 16px;
     color: #f26522;
     background-color: transparent;
-    text-align: right;
     font-weight: bold;
+    cursor: pointer;
 }
 
-.buy_bt>a:hover {
+.buy_bt>h2:hover {
     background-color: transparent;
     color: #262626;
 }
@@ -104,4 +103,7 @@ th{
 .seemore_bt>a:hover {
     background-color: transparent;
     color: #f26522;
+}
+.pe-auto{
+    text-decoration: none;
 }

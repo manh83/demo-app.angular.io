@@ -34,13 +34,21 @@ export class SigninComponent {
         if(response.user.role==="admin"){
           // Lưu thông tin người dùng đã đăng nhập vào AuthService
           this.authService.setCurrentUser(response.user,response.accessToken);
-          Swal.fire('Success', 'Đăng nhập thành công', 'success');
-          this.router.navigate(['/admin/products/list']);
+          Swal.fire('Success', 'Đăng nhập thành công', 'success')
+          .then(()=>{ 
+            this.router.navigate(['/admin/products/list']);
+          }).then(()=>{
+            window.location.reload()
+          })
         }else{
           // Lưu thông tin người dùng đã đăng nhập vào AuthService
           this.authService.setCurrentUser(response.user,response.accessToken);
-          Swal.fire('Success', 'Đăng nhập thành công', 'success');
-          this.router.navigate(['']);
+          Swal.fire('Success', 'Đăng nhập thành công', 'success')
+          .then(()=>{ 
+            this.router.navigate(['']);
+          }).then(()=>{
+            window.location.reload();
+          })
         }
       },
       (error) => {

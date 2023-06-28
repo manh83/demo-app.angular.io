@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+      <h1>Đơn hàng của bạn</h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th>Ảnh sản phẩm</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Đơn giá</th>
+            <th>Tình trạng</th>
+            <th>Tổng tiền</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ order.productId.name }}</td>
+            <td>
+              <img src="{{order.productId?.imgUrl}}" alt="" width="200px">
+            </td>
+            <td>{{ order.quantity }}</td>
+            <td>{{ order.productId.price }}</td>
+            <td>{{order.status}}</td>
+            <td>{{order.totalPrice}}</td>
+            <td>
+              <button type="button" class="btn btn-danger" (click)="edit(order._id)">Cập nhật đơn hàng</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

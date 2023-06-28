@@ -19,3 +19,17 @@ export interface ICategory{
     _id?:string,
     name: string
 }
+
+export interface IOrder{
+    _id?:string,
+    productId?: string,
+    status: string
+}
+
+export interface ICart{
+    _id?:string,
+    productId: any,
+    quantity?: number
+    total?: number
+    selected?: boolean
+}

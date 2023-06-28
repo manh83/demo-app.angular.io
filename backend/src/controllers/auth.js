@@ -108,32 +108,32 @@ const generateNewPassword = () => {
 
 
 // kiểm tra email và lấy lại mật khẩu
-const sendResetPasswordEmail = async (email, resetToken) => {
-  try {
-    // Cấu hình Nodemailer để gửi email
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'your-email@example.com',
-        pass: 'your-email-password',
-      },
-    });
+// const sendResetPasswordEmail = async (email, resetToken) => {
+//   try {
+//     // Cấu hình Nodemailer để gửi email
+//     const transporter = nodemailer.createTransport({
+//       service: 'gmail',
+//       auth: {
+//         user: 'your-email@example.com',
+//         pass: 'your-email-password',
+//       },
+//     });
 
-    // Tạo nội dung email
-    const mailOptions = {
-      from: 'your-email@example.com',
-      to: email,
-      subject: 'Reset Password',
-      html: `<p>Click the following link to reset your password: <a href="your-website.com/reset-password?token=${resetToken}">Reset Password</a></p>`,
-    };
+//     // Tạo nội dung email
+//     const mailOptions = {
+//       from: 'your-email@example.com',
+//       to: email,
+//       subject: 'Reset Password',
+//       html: `<p>Click the following link to reset your password: <a href="your-website.com/reset-password?token=${resetToken}">Reset Password</a></p>`,
+//     };
 
-    // Gửi email
-    await transporter.sendMail(mailOptions);
-    console.log('Email sent successfully');
-  } catch (error) {
-    console.log('Error sending email:', error);
-  }
-};
+//     // Gửi email
+//     await transporter.sendMail(mailOptions);
+//     console.log('Email sent successfully');
+//   } catch (error) {
+//     console.log('Error sending email:', error);
+//   }
+// };
 
 export const forgotPassword = async (req, res) => {
   try {
@@ -154,8 +154,6 @@ export const forgotPassword = async (req, res) => {
     user.password = hashedPassword;
     await user.save();
 
-    // Send the new password to the user's email
-    sendResetPasswordEmail(email, newPassword);
 
     return res.status(200).json({
       message: 'Lấy lại mật khẩu thành công',

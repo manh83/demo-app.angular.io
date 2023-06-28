@@ -24,4 +24,8 @@ export class PayService {
   getSelectedProducts() {
     return this.selectedProducts;
   }
+
+  clearSelectedProducts() {
+    this.selectedProducts = [];
+  }
 }

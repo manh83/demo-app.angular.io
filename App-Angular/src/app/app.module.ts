@@ -30,6 +30,9 @@ import { ChangePasswordComponent } from './page/login/change-password/change-pas
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { CartComponent } from './page/cart/cart.component';
 import { PayComponent } from './page/pay/pay.component';
+import { OrderComponent } from './page/order/order.component';
+import { OrderListComponent } from './page/admin/order-list/order-list.component';
+import { OrderUpdateComponent } from './page/admin/order-update/order-update.component';
 
 
 @NgModule({
@@ -58,6 +61,9 @@ import { PayComponent } from './page/pay/pay.component';
     PaginationComponent,
     CartComponent,
     PayComponent,
+    OrderComponent,
+    OrderListComponent,
+    OrderUpdateComponent,
   ],
   imports: [
     BrowserModule,

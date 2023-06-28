@@ -19,6 +19,9 @@ import { ForgotPasswordComponent } from './page/login/forgot-password/forgot-pas
 import { ChangePasswordComponent } from './page/login/change-password/change-password.component';
 import { CartComponent } from './page/cart/cart.component';
 import { PayComponent } from './page/pay/pay.component';
+import { OrderComponent } from './page/order/order.component';
+import { OrderListComponent } from './page/admin/order-list/order-list.component';
+import { OrderUpdateComponent } from './page/admin/order-update/order-update.component';
 
 const routes: Routes = [
   {path: "",component: WebsiteLayoutComponent,
@@ -33,7 +36,8 @@ const routes: Routes = [
     {path: "forgot-password",component:ForgotPasswordComponent},
     {path: "changePassword",component:ChangePasswordComponent},
     {path: "cart",component: CartComponent},
-    {path: "pay",component: PayComponent}
+    {path: "pay",component: PayComponent},
+    {path: "order",component: OrderComponent}
   ]
 },
   {path: "admin",component: AdminLayoutComponent,
@@ -45,7 +49,9 @@ const routes: Routes = [
     {path: "products/list",component:ProductListComponent},
     {path: "categories/add",component: CategoryAddComponent},
     {path: "categories/list",component:CategoryListComponent},
-    {path: "categories/:id/update",component: CategoryUpdateComponent}
+    {path: "categories/:id/update",component: CategoryUpdateComponent},
+    {path: "order",component: OrderListComponent},
+    {path: "order/:id",component: OrderUpdateComponent},
   ]},
 {path: "**",component: NotFoundComponent}
 ];

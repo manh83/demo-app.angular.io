@@ -24,7 +24,7 @@ export class ProductAddComponent {
     private http: HttpClient,private router: Router,private formBuilder:FormBuilder){
       this.productForm = this.formBuilder.group({
         name: ['',[Validators.required,Validators.minLength(6),Validators.maxLength(255)]],
-        price: ['',[Validators.required,Validators.min(1),Validators.pattern(/^\d+$/)]],
+        price: ['', [Validators.required, Validators.pattern(/^\d+(\.\d+)?$/)]],
         imgUrl: [''],
         description: [''],
         categoryId: ['',[Validators.required]]

@@ -31,7 +31,7 @@ export const getAllCartProducts = async (req, res) => {
 
       let cart = null;
       if (user.carts.length > 0) {
-        cart = await Cart.findById(user.carts[0]).populate("products");
+        cart = await Cart.findById(user.carts[0]).populate("productId");
       }
 
       if (!cart) {
@@ -40,7 +40,7 @@ export const getAllCartProducts = async (req, res) => {
 
       return res.status(200).json({
         message: "Danh sách sản phẩm trong giỏ hàng",
-        cart: cart.products,
+        cart: cart.productId,
       });
     });
   } catch (error) {
@@ -96,7 +96,7 @@ export const cartAddProduct = async (req, res) => {
           await user.save();
         }
 
-        cart.products.push(product);
+        cart.productId.push(product);
         await cart.save();
 
         return res.status(200).json({

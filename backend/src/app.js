@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 import cors from "cors"
 import categoryRouter from "./routes/category";
 import cart from "./routes/cart"
+import orderRouter from "./routes/order"
 
 // config
 dotenv.config();
@@ -22,6 +23,8 @@ app.use("/api", authRouter);
 app.use("/api", categoryRouter);
 app.use("/api", uploadRouter);
 app.use("/api", cart);
+app.use("/api", orderRouter);
+
 
 
 

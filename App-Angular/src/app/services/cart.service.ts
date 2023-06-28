@@ -8,8 +8,7 @@ import { AuthuService } from './authu.service';
   providedIn: 'root'
 })
 export class CartService {
-  private api = 'http://localhost:8080/api/cart'
-  private apiUrl = 'http://localhost:8080/api/cart/add';
+
   constructor(private http:HttpClient,private authService: AuthuService) { }
   getAllCart():Observable<any>{
     const token = this.authService.getToken();

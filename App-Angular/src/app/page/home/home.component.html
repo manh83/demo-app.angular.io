@@ -14,7 +14,7 @@
           </div>
           <div class="btn_main">
             <div class="buy_bt">
-              <p (click)="addProductToCart(product._id)">Buy Now</p>
+              <h2 (click)="addProductToCart(product._id)">Buy Now</h2>
             </div>
                                 
             <div class="seemore_bt"><a href="#">See More</a></div>
@@ -28,17 +28,18 @@
   
     <div class="d-flex justify-content-end" style="margin-top: 50px;margin-bottom: 50px;margin-right: 20px;">
       <!-- nút chuyển trang -->
-      <div>
-        <th type="submit" class="border border-dark" *ngIf="currentPage > 1" (click)="onPreviousPage()">trước</th>
-        <th type="button" class="border border-dark" *ngIf="currentPage < totalPages" (click)="onNextPage()">Sau</th>
+      <div class="mt-4 d-flex justify-content-end" style="margin-left: 12px;margin-bottom: 30px;">
+        <a (click)="pre()" style="font-size: 20px;cursor: pointer;">
+          <i class="fa-solid fa-square-caret-left"></i>
+        </a>
+        <a class="pe-auto" href="" style="font-size: 16px;margin-left: 10px;margin-right: 10px; color: black;margin-top: 3px;">
+          {{currentPage}}
+        </a>
+        <a (click)="nextPage()" style="font-size: 20px;cursor: pointer;">
+          <i class="fa-solid fa-square-caret-right"></i>
+        </a>
       </div>
 
-        <!-- Pagination component -->
-      <app-pagination 
-        [currentPage]="currentPage" 
-        [totalPages]="totalPages" 
-        (pageChanged)="onPageChanged($event)">
-      </app-pagination>
 
     </div>
 
